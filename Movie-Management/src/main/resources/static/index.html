@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Films</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1><i class="fas fa-film"></i> Gestion de Films</h1>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" id="nav-home">Accueil</a></li>
+                <li><a href="#" id="nav-add">Ajouter un film</a></li>
+                <li><a href="#" id="nav-about">À propos</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <!-- Section de recherche -->
+    <section id="search-section">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Rechercher un film...">
+            <select id="search-type">
+                <option value="title">Titre</option>
+                <option value="director">Réalisateur</option>
+                <option value="genre">Genre</option>
+            </select>
+            <button id="search-btn"><i class="fas fa-search"></i> Rechercher</button>
+        </div>
+    </section>
+
+    <!-- Section d'affichage des films -->
+    <section id="movies-section">
+        <h2>Liste des Films</h2>
+        <div class="movies-container" id="movies-container">
+            <!-- Les films seront ajoutés ici dynamiquement -->
+            <div class="loading">Chargement des films...</div>
+        </div>
+    </section>
+
+    <!-- Section d'ajout/modification de film -->
+    <section id="add-movie-section" class="hidden">
+        <h2 id="form-title">Ajouter un nouveau film</h2>
+        <form id="movie-form">
+            <input type="hidden" id="movie-id">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="director">Réalisateur</label>
+                <input type="text" id="director" name="director" required>
+            </div>
+            <div class="form-group">
+                <label for="release-date">Date de sortie</label>
+                <input type="date" id="release-date" name="releaseDate" required>
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <select id="genre" name="genre" required>
+                    <option value="">Sélectionner un genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Aventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Comedy">Comédie</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Documentary">Documentaire</option>
+                    <option value="Drama">Drame</option>
+                    <option value="Fantasy">Fantaisie</option>
+                    <option value="Horror">Horreur</option>
+                    <option value="Mystery">Mystère</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Sci-Fi">Science-Fiction</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="War">Guerre</option>
+                    <option value="Western">Western</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="rating">Note (0-10)</label>
+                <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="save-btn">Enregistrer</button>
+                <button type="button" id="cancel-btn">Annuler</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="about-section" class="hidden">
+        <h2>À propos de l'application</h2>
+        <div class="about-content">
+            <p>Cette application de gestion de films a été développée avec Spring Boot pour le backend et HTML5/CSS3/JavaScript pour le frontend.</p>
+            <h3>Technologies utilisées :</h3>
+            <ul>
+                <li><strong>Backend :</strong> Spring Boot, Spring Data JPA, PostgreSQL, Redis Cache</li>
+                <li><strong>Documentation :</strong> Swagger UI</li>
+                <li><strong>Monitoring :</strong> Spring Actuator</li>
+                <li><strong>Frontend :</strong> HTML5, CSS3, JavaScript</li>
+            </ul>
+            <p>Version 1.0.0</p>
+        </div>
+    </section>
+</main>
+
+<!-- Modal de confirmation de suppression -->
+<div id="delete-modal" class="modal">
+    <div class="modal-content">
+        <h3>Confirmation de suppression</h3>
+        <p>Êtes-vous sûr de vouloir supprimer ce film ?</p>
+        <div class="modal-actions">
+            <button id="confirm-delete">Supprimer</button>
+            <button id="cancel-delete">Annuler</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal d'alerte -->
+<div id="alert-modal" class="modal">
+    <div class="modal-content">
+        <h3 id="alert-title">Information</h3>
+        <p id="alert-message"></p>
+        <div class="modal-actions">
+            <button id="alert-ok">OK</button>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Gestion de Films - Tous droits réservés</p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
